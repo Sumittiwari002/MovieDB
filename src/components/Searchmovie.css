@@ -1,0 +1,622 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #080808;
+
+    color: #fff;
+
+    font-family: "Poppins", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   SEARCH PAGE
+===================================================== */
+
+.search-page {
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at top center,
+            #1b0b0d 0%,
+            #0b0b0b 35%,
+            #080808 75%
+        );
+
+    padding: 55px 45px;
+}
+
+
+/* =====================================================
+   PAGE TITLE
+===================================================== */
+
+.page-title {
+    color: #f5f5f5;
+
+    text-align: center;
+
+    margin-bottom: 45px;
+
+    font-size: 2.8rem;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.9);
+}
+
+.page-title span {
+    color: #e50914;
+
+    text-shadow:
+        0 0 18px rgba(229, 9, 20, 0.45);
+}
+
+
+/* =====================================================
+   MOVIE CARD
+===================================================== */
+
+.movie-card {
+    position: relative;
+
+    width: 100%;
+
+    background: #0d0d0d;
+
+    border: 1px solid #222;
+
+    color: #fff;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.65);
+}
+
+
+/* =====================================================
+   CARD HOVER
+===================================================== */
+
+.movie-card:hover {
+    transform: translateY(-8px) scale(1.025);
+
+    z-index: 5;
+
+    border-color: rgba(229, 9, 20, 0.45);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.9),
+        0 0 25px rgba(229, 9, 20, 0.15);
+}
+
+
+/* =====================================================
+   POSTER WRAPPER
+===================================================== */
+
+.poster-wrapper {
+    position: relative;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    background: #111;
+}
+
+
+/* =====================================================
+   POSTER
+===================================================== */
+
+.poster-wrapper img {
+    display: block;
+
+    width: 100%;
+
+    aspect-ratio: 2 / 3;
+
+    object-fit: cover;
+
+    opacity: 0.92;
+
+    transition:
+        transform 0.5s ease,
+        filter 0.5s ease,
+        opacity 0.5s ease;
+}
+
+
+.movie-card:hover .poster-wrapper img {
+    transform: scale(1.08);
+
+    filter: brightness(0.62);
+
+    opacity: 1;
+}
+
+
+/* =====================================================
+   DARK POSTER GRADIENT
+===================================================== */
+
+.poster-wrapper::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.9) 0%,
+            rgba(0, 0, 0, 0.25) 35%,
+            rgba(0, 0, 0, 0.05) 70%,
+            transparent 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   RATING
+===================================================== */
+
+.rating {
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    z-index: 2;
+
+    padding: 7px 11px;
+
+    border-radius: 20px;
+
+    background: rgba(5, 5, 5, 0.82);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    color: #ffd700;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =====================================================
+   CARD BODY
+===================================================== */
+
+.movie-card-body {
+    padding: 18px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #111,
+            #0b0b0b
+        );
+}
+
+
+/* =====================================================
+   MOVIE TITLE
+===================================================== */
+
+.movie-title {
+    color: #f5f5f5;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+
+    margin: 0 0 10px;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   OVERVIEW
+===================================================== */
+
+.overview {
+    color: #888;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    margin-bottom: 18px;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 3;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   DETAILS BUTTON
+===================================================== */
+
+.search-details-btn {
+    display: block;
+
+    width: 100%;
+
+    padding: 10px 15px;
+
+    background: #e50914;
+
+    color: #fff;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border: 1px solid #e50914;
+
+    border-radius: 7px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.search-details-btn:hover {
+    background: #ff1722;
+
+    color: #fff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(229, 9, 20, 0.35);
+}
+
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+.loader {
+    min-height: 70vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #080808;
+}
+
+
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (min-width: 1200px) {
+
+    .search-page {
+        padding: 60px 50px;
+    }
+
+    .page-title {
+        font-size: 3rem;
+    }
+
+}
+
+
+/* =====================================================
+   LAPTOP
+===================================================== */
+
+@media (max-width: 1199px) {
+
+    .search-page {
+        padding: 45px 30px;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+
+        margin-bottom: 35px;
+    }
+
+    .movie-card-body {
+        padding: 15px;
+    }
+
+    .movie-title {
+        font-size: 17px;
+    }
+
+    .overview {
+        font-size: 13px;
+    }
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 991px) {
+
+    .search-page {
+        padding: 35px 20px;
+    }
+
+    .page-title {
+        font-size: 2.2rem;
+
+        margin-bottom: 30px;
+    }
+
+    .movie-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .rating {
+        top: 8px;
+
+        right: 8px;
+
+        padding: 6px 9px;
+
+        font-size: 12px;
+    }
+
+    .movie-card-body {
+        padding: 13px;
+    }
+
+    .movie-title {
+        font-size: 16px;
+    }
+
+    .overview {
+        font-size: 12px;
+
+        line-height: 1.5;
+
+        -webkit-line-clamp: 3;
+    }
+
+    .search-details-btn {
+        padding: 8px;
+
+        font-size: 13px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 767px) {
+
+    .search-page {
+        padding: 25px 15px;
+    }
+
+    .page-title {
+        font-size: 1.8rem;
+
+        margin-bottom: 25px;
+    }
+
+    .movie-card:hover {
+        transform: translateY(-3px) scale(1.01);
+
+        box-shadow:
+            0 12px 25px rgba(0, 0, 0, 0.8);
+    }
+
+    .movie-card:hover .poster-wrapper img {
+        transform: scale(1.04);
+
+        filter: brightness(0.7);
+    }
+
+    .movie-card-body {
+        padding: 11px;
+    }
+
+    .movie-title {
+        font-size: 14px;
+
+        line-height: 1.25;
+
+        margin-bottom: 7px;
+    }
+
+    .overview {
+        color: #777;
+
+        font-size: 11px;
+
+        line-height: 1.45;
+
+        margin-bottom: 12px;
+
+        -webkit-line-clamp: 2;
+    }
+
+    .rating {
+        padding: 5px 8px;
+
+        font-size: 10px;
+    }
+
+    .search-details-btn {
+        padding: 7px;
+
+        font-size: 11px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 575px) {
+
+    .search-page {
+        padding: 20px 10px;
+    }
+
+    .page-title {
+        font-size: 1.5rem;
+
+        margin-bottom: 20px;
+    }
+
+    .movie-card {
+        border-radius: 8px;
+
+        border-color: #1d1d1d;
+    }
+
+    .movie-card-body {
+        padding: 9px;
+    }
+
+    .movie-title {
+        font-size: 12px;
+
+        margin-bottom: 5px;
+    }
+
+    .overview {
+        font-size: 10px;
+
+        -webkit-line-clamp: 2;
+
+        margin-bottom: 8px;
+    }
+
+    .rating {
+        top: 6px;
+
+        right: 6px;
+
+        padding: 4px 7px;
+
+        font-size: 9px;
+    }
+
+    .search-details-btn {
+        padding: 6px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONES
+===================================================== */
+
+@media (max-width: 399px) {
+
+    .search-page {
+        padding: 15px 8px;
+    }
+
+    .page-title {
+        font-size: 1.3rem;
+    }
+
+    .movie-card-body {
+        padding: 7px;
+    }
+
+    .movie-title {
+        font-size: 11px;
+    }
+
+    .overview {
+        font-size: 9px;
+    }
+
+    .rating {
+        font-size: 8px;
+
+        padding: 3px 6px;
+    }
+
+    .search-details-btn {
+        font-size: 9px;
+
+        padding: 5px;
+    }
+
+}
