@@ -1,44 +1,43 @@
 import React, { useState, useEffect } from "react";
-import {Navigate, useNavigate, useParams } from "react-router";
+import {Navigate, useNavigate } from "react-router";
 import axios from "axios";
+import { useSelector, useDispatch } from 'react-redux'
 
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Button,
-  Spinner,
-  Badge,
-} from "react-bootstrap";
+import {Container, Row, Col, Card, Button, Spinner, Badge} from "react-bootstrap";
 
 import "./Searchmovie.css";
+import ErrorBoundary from "../ErrorCatch/ErrorBoundary";
+import Imagecomponent from "./Imagecomponent";
 
 function Searchmovie() {
   const [info, setInfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { moviename } = useParams();
-  const navigate = useNavigate();
   
+  const navigate = useNavigate();
+
+
+  const searchState = useSelector((state) => state.search.movieName);
+  console.log(searchState);
+
 
   useEffect(() => {
     setLoading(true);
 
-    const apipath = `https://api.themoviedb.org/3/search/movie?api_key=9307cd84f7415d1c65657bcb0548a8c7&language=en-US&query=${moviename}&page=1`;
-
+    const apipath = `https://api.themoviedb.org/3/search/movie?api_key=9307cd84f7415d1c65657bcb0548a8c7&language=en-US&query=${searchState}&page=1`;
+      
     axios.get(apipath).then((res) => {
       setInfo(res.data.results);
       setLoading(false);
     });
-  }, [moviename]);
+  }, [searchState]);
 
   return (
     <div className="search-page">
       <Container>
         <h2 className="page-title">
           Search Result for
-          <span> "{moviename}"</span>
+          <span> "{searchState}"</span>
         </h2>
 
         {loading ? (
@@ -53,7 +52,9 @@ function Searchmovie() {
                   <Card className="movie-card">
 
                     <div className="poster-wrapper">
-                      <Card.Img
+                     <ErrorBoundary>
+                        <Imagecomponent record={movie.poster_path}/>
+                      {/* <Card.Img
                         variant="top"
                         src={
                           movie.poster_path
@@ -61,8 +62,8 @@ function Searchmovie() {
                               movie.poster_path
                             : "https://via.placeholder.com/500x750?text=No+Image"
                         }
-                      />
-
+                      /> */}
+                      </ErrorBoundary>
                       <Badge bg="warning" className="rating">
                         ⭐ {movie.vote_average}
                       </Badge>

@@ -7,6 +7,8 @@ import Image from 'react-bootstrap/Image';
 // import Card from 'react-bootstrap/Card';
 import { useParams } from "react-router";
 import './Singlemovie.css'
+import ErrorBoundary1 from "../ErrorCatch/ErrorBoundary1";
+import Imagecomponent from "./Imagecomponent";
 
 function Singlemovie(){
 
@@ -115,17 +117,9 @@ function Singlemovie(){
               key={name}
             >
               <div className="cast-card">
-
-                <Image
-                  fluid
-                  
-                  className="cast-image"
-                  src={
-                    profile_path
-                      ? "https://image.tmdb.org/t/p/w500" + profile_path
-                      : "https://via.placeholder.com/300x300"
-                  }
-                />
+                <ErrorBoundary1>
+                  <Imagecomponent record={profile_path} />
+                </ErrorBoundary1>
 
                 <h6>{name}</h6>
 

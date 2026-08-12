@@ -4,16 +4,23 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 // import NavDropdown from 'react-bootstrap/NavDropdown'
 import { Link, useNavigate } from "react-router";
+import { useDispatch} from 'react-redux'
+import { shareMovie } from "../Redux/slices/SearchSlice";
 
 
 function Header()
 {
+    const dispatch = useDispatch();
     let navigate = useNavigate();
     let movie = useRef();
+    // console.log(movie);
+    
     
     function searchMovie(ev){
         ev.preventDefault();        
         console.log(movie.current.value);
+        dispatch(shareMovie(movie.current.value));
+        
         
         if(movie.current.value !=="")
             navigate("/searchmovie/"+ movie.current.value)
@@ -63,11 +70,7 @@ function Header()
                     placeholder="Search Movies..."
                 />
 
-                <button
-                    className="btn btn-danger rounded-pill"
-                >
-                    Search
-                </button>
+                <button className="btn btn-danger rounded-pill">Search</button>
 
             </form>
 

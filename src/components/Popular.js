@@ -3,19 +3,12 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router";
 import "./Popular.css";
+import useFetch from "../customHook/useFetch";
 
 function Popular() {
-  const [record, setRecord] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=9307cd84f7415d1c65657bcb0548a8c7&language=en-US&page=1"
-      )
-      .then((res) => {
-        setRecord(res.data.results);
-      });
-  }, []);
+  let record =useFetch("https://api.themoviedb.org/3/movie/popular?api_key=9307cd84f7415d1c65657bcb0548a8c7&language=en-US&page=1");
+  
 
   return (
     <div className="popular-page">

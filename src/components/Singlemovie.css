@@ -305,6 +305,7 @@ body {
     text-align: center;
 
     padding: 10px;
+    border-radius: 15%;
 
     transition: transform 0.35s ease;
 }

@@ -3,24 +3,13 @@ import axios from "axios";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router";
 import "./Upcoming.css";
+import useFetch from "../customHook/useFetch";
 
 function Upcoming() {
 
-    const [record, setRecord] = useState([]);
+    let record = useFetch("https://api.themoviedb.org/3/movie/upcoming?api_key=9307cd84f7415d1c65657bcb0548a8c7&language=en-US&page=1");
 
-    useEffect(() => {
-
-        axios
-            .get(
-                "https://api.themoviedb.org/3/movie/upcoming?api_key=9307cd84f7415d1c65657bcb0548a8c7&language=en-US&page=1"
-            )
-            .then((res) => {
-                setRecord(res.data.results);
-            })
-            .catch((err) => console.log(err));
-
-    }, []);
-
+   
     return (
 
         <div className="upcoming-page">
